@@ -87,6 +87,15 @@ const UploadAnalysis = () => {
   const [fileInfos, setFileInfos] = useState([]);
   const [form, setForm] = React.useState({ catId: 1, param1: 0.1, param2: 10 });
 
+  React.useEffect(() => {
+    axios
+      .get('/analysis/config', {})
+      .then((res) => {
+        setForm(res.data);
+      })
+      .catch(() => {});
+  }, []);
+
   const selectFiles = (event) => {
     const data = [];
     const tableData = [];
@@ -101,6 +110,7 @@ const UploadAnalysis = () => {
     setFlag(fileInfos+2);
     var formdata = new FormData()
     formdata.append('file', event.target.files[0]);
+    formdata.append('operation', JSON.stringify(form))
     formdata.append(
       'directory',
       `${form.catId}_${form.param1}_${form.param2}`.replace(

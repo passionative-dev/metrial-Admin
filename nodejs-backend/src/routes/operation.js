@@ -89,33 +89,71 @@ router.post(
     const __dirname = path.resolve(path.dirname(""));
     const rootpath = __dirname + "/public/supervised_machine_learning";
     const newpath = rootpath + "/data/" + req.body.directory + "/";
-    const filterData = JSON.parse(req.body.filtered);
+
     const ops = JSON.parse(req.body.operation);
-    if (!fs.existsSync(newpath)){
-      fs.mkdir(newpath, (err) => {
-        if (err) {
-          return console.error(err);
-        }
-        console.log("Directory created successfully!");
-      });
-    }
+
+    fs.mkdir(newpath, (err) => {
+      if (err) {
+        return console.error(err);
+      }
+      console.log("Directory created successfully!");
+    });
 
     const file = req.files.file;
-    console.log(req.body,'upload');
+    console.log(file,'upload');
     const filename = file.name;
-    const filteredfile = `filtered-${moment().format("YYYYMMDD_hhmmss.[csv]")}`;
+    const filteredfile = `filtered-${file.name}`;
 
     const filteredData = req.body.filtered;
-   console.log(filteredData);
-    console.log(filterData)
+
     const outStream = csv.format({ headers: true });
     outStream.pipe(fs.createWriteStream(`${newpath}${filteredfile}`));
     /*filteredData.forEach((data) => {
       outStream.write(data);
     });*/
     outStream.end();
-    
-    res.json({status: 2})
+
+    fs.readFile(newpath + filename, (err, data) => {
+      if (err == null) {
+        res.status(200).json({ status: 10 });
+      } else {
+        file.mv(`${newpath}${filename}`, (err) => {
+          if (err) {
+            res.status(200).send({ status: 0, code: 200 });
+          } else {
+            const filepath = newpath + filename;
+            let options = {
+              mode: "text",
+              pythonOptions: ["-u"],
+              scriptPath: rootpath,
+              args: [req.body.directory, filepath, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
+            };
+            PythonShell.run("main.py", options, async function (err, result) {
+              if (err) {
+                console.log("err", err);
+                return res.status(200).json({ status: 1, code: 200 });
+              } else {
+                await db.UploadFile.create({
+                  directory: req.body.directory,
+                  filename: filename,
+                  ...ops,
+                });
+
+                const json = JSON.parse(result[0]);
+                for (const list of json.results) {
+                  await OperationService.createOperation({
+                    parameter: req.body.directory,
+                    filename,
+                    ...list,
+                  });
+                }
+                return res.status(200).json({ status: 2, data: json.results, code: 200 });
+              }
+            });
+          }
+        });
+      }
+    });
   })
 );
 router

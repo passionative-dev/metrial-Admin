@@ -115,7 +115,35 @@ const UploadFile = () => {
     );
     formdata.append(
       'filtered',
-      JSON.stringify(fileRows),
+      JSON.stringify(fileRows.filter((row) => {
+        const tmp = products.find(
+          (p) => row.Title.includes(p.title) //true
+        );
+        if (!tmp) return true;
+        if (tmp) {
+          if (
+            selectedCountries.length > 0 &&
+            !selectedCountries.includes(tmp.country)
+          ) {
+            return false;
+          }
+          if (
+            selectedBrands.length > 0 &&
+            !selectedBrands.includes(tmp.brand)
+          ) {
+            return false;
+          }
+          if (
+            selectedProducts.length > 0 &&
+            !selectedProducts.includes(tmp.id)
+          ) {
+            return false;
+          }
+          return true;
+        } else {
+          return false;
+        }
+      })),
     );
     formdata.append('operation', JSON.stringify(form));
     axios

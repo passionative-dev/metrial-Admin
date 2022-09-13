@@ -148,6 +148,8 @@ router.post(
       });
     }
     const file = req.files.file;
+    const ops = JSON.parse(req.body.operation);
+
     console.log(file)
     const filteredfile = `filtered-${moment().format("YYYYMMDD_hhmmss.[csv]")}`;
     file.mv(`${newpath}${filteredfile}`, (err) => {
@@ -155,6 +157,33 @@ router.post(
         console.log(err);
         return res.status(400).send({ message: "File Upload failed." });
       }
+      let options = {
+        mode: "text",
+        pythonOptions: ["-u"],
+        scriptPath: rootpath,
+        args: [req.body.directory, newpath, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
+      };
+      PythonShell.run("main.py", options, async function (err, result) {
+        if (err) {
+          console.log("err", err);
+          return res.status(200).json({ status: 1, code: 200 });
+        } else {
+          await db.UploadFile.create({
+            directory: req.body.directory,
+            filename: file.name,
+            ...ops,
+          });
+          var filename = file.name;
+          const json = JSON.parse(result[0]);
+          for (const list of json.results) {
+            await AnalysisonService.createAnalysis({
+              parameter: req.body.directory,
+              filename,
+              ...list,
+            });
+          }
+        }
+      });
       let stream = fs
         .createReadStream(`${newpath}${filteredfile}`)
         .pipe(csv.parse({ headers: true }))
@@ -163,6 +192,7 @@ router.post(
         // pipe the parsed input into a csv formatter
         // Using the transform function from the formatting stream
         console.log('finish');
+        
         return res.json({status: 3});
     }); 
   })
