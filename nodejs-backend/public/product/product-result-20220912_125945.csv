@@ -1,0 +1,22 @@
+error,error_message,title,subtitle,description_1,cat_1,cat_2,cat_3,country,state,brand,available,date_published,price,description_2,discount,code,hashtag,rating
+1,Duplicate Product Title,Hoodie,Hoodie,This is a simple product1,1,2,3,2,0,1,true,10/7/2022,134,This is a simple product1,5,S123,Tag1,1
+1,Duplicate Product Title,Hoodie with Logo,Hoodie with Logo,This is a simple product2,4,5,6,3,4,1,false,10/7/2022,134,This is a simple product2,1,S124,Tag2,3
+1,Duplicate Product Title,T-Shirt,T-Shirt,This is a simple product3,4,7,8,5,6,2,true,23/07/2002,134,This is a simple product3,4,S125,Tag3,4
+1,Duplicate Product Title,Beanie,Beanie,This is a simple product4,4,9,10,5,7,3,true,10/7/2022,134,This is a simple product4,5,S126,Tag4,3
+1,Duplicate Product Title,Belt,Belt,This is a simple product5,4,11,12,2,0,4,true,10/7/2022,134,This is a simple product5,6,S127,Tag5,4
+1,Duplicate Product Title,Cap,Cap,This is a simple product6,13,14,15,8,9,5,true,23/07/2003,134,This is a simple product6,,S128,Tag6,5
+1,Duplicate Product Title,Sunglasses,Sunglasses,This is a simple product7,13,16,17,8,10,6,true,10/7/2022,0.23,This is a simple product7,8,S129,Tag7,2
+1,Duplicate Product Title,T-Shirt with Logo,T-Shirt with Logo,This is a simple product8,13,0,0,8,11,7,true,10/7/2022,134,This is a simple product8,,S130,Tag8,1
+1,Duplicate Product Title,Beanie with Logo,Beanie with Logo,This is a simple produc9,18,19,20,5,12,8,true,23/07/2004,134,This is a simple produc9,8,S131,Tag9,3
+1,Duplicate Product Title,Logo Collection,Logo Collection,This is a simple product10,18,21,22,3,13,1,true,10/7/2022,134,This is a simple product10,8,S132,Tag10,
+1,Duplicate Product Title,Polo,Polo,This is a simple product11,18,19,23,14,15,2,true,10/7/2022,134,This is a simple product11,8,S133,Tag11,3
+1,Duplicate Product Title,Album,Album,This is a simple product12,18,21,24,14,16,7,false,23/07/2005,134,This is a simple product12,9,S134,Tag12,1
+1,Duplicate Product Title,Single,Single,This is a simple product13,25,26,27,17,18,8,false,10/7/2022,134,This is a simple product13,1,S135,Tag13,1
+1,Duplicate Product Title,Cap,Cap,This is a simple product14,25,28,29,2,0,1,false,10/7/2022,134,This is a simple product14,2,S136,Tag14,
+1,Parameter missing or Column not matches,,,This is a simple product15,18,30,31,14,19,2,false,23/07/2006,134,This is a simple product15,,S137,Tag15,4
+1,Duplicate Product Title,Jean Top,Jean Top,This is a simple product16,4,7,32,14,16,7,true,10/7/2022,134,This is a simple product16,,S138,Tag16,
+1,Duplicate Product Title,Sports Kids,Sports Kids,This is a simple product17,0,0,0,17,20,8,true,10/7/2022,134,This is a simple product17,,S139,Tag17,
+1,Duplicate Product Title,Boots,Boots,This is a simple product18,33,34,35,21,22,1,true,23/07/2007,134,This is a simple product18,,S140,Tag18,
+1,Parameter missing or Column not matches,,Jean Top,This is a simple product16,4,7,32,14,16,7,true,10/7/2022,134,This is a simple product16,,S138,Tag16,
+1,Duplicate Product Title,Sports Kids,Sports Kids,This is a simple product17,0,0,0,17,20,8,true,10/7/2022,134,This is a simple product17,,S139,Tag17,
+1,Duplicate Product Title,Boots,Boots,This is a simple product18,33,34,35,21,22,1,true,23/07/2007,134,This is a simple product18,,S140,Tag18,

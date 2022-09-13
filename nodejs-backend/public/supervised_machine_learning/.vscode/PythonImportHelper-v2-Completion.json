@@ -1,0 +1,210 @@
+[
+    {
+        "label": "Kdtree",
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "isExtraImport": true,
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "printPreorder",
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "isExtraImport": true,
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "Kdtree",
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "isExtraImport": true,
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "isExtraImport": true,
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "read_files",
+        "description": "read_files",
+        "isExtraImport": true,
+        "detail": "read_files",
+        "documentation": {}
+    },
+    {
+        "label": "getDimensions",
+        "importPath": "read_files",
+        "description": "read_files",
+        "isExtraImport": true,
+        "detail": "read_files",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "xnn",
+        "description": "xnn",
+        "isExtraImport": true,
+        "detail": "xnn",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "heapq",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "heapq",
+        "description": "heapq",
+        "detail": "heapq",
+        "documentation": {}
+    },
+    {
+        "label": "mode",
+        "importPath": "statistics",
+        "description": "statistics",
+        "isExtraImport": true,
+        "detail": "statistics",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "kind": 6,
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "peekOfCode": "class Node():\n    def __init__(self, value, left, right):\n        self.value = value\n        self.left = left\n        self.right = right\ndef printPreorder(node):\n    if node:\n        print(node.value)\n        printPreorder(node.left)\n        printPreorder(node.right)",
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "Kdtree",
+        "kind": 6,
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "peekOfCode": "class Kdtree():\n    def buildKdtree(point_list):\n        return kdtree(point_list)",
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "printPreorder",
+        "kind": 2,
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "peekOfCode": "def printPreorder(node):\n    if node:\n        print(node.value)\n        printPreorder(node.left)\n        printPreorder(node.right)\ndef kdtree(point_list, depth=0):\n    try:\n        k = len(point_list[0]) - 1\n    except IndexError as e:\n        return None",
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "kdtree",
+        "kind": 2,
+        "importPath": "kd_tree",
+        "description": "kd_tree",
+        "peekOfCode": "def kdtree(point_list, depth=0):\n    try:\n        k = len(point_list[0]) - 1\n    except IndexError as e:\n        return None\n    if len(point_list) == 1:\n        return Node(value=point_list[0],left=None,right=None)\n    axis = depth % k\n    point_list.sort(key=lambda x: x[axis])\n    l = len(point_list)",
+        "detail": "kd_tree",
+        "documentation": {}
+    },
+    {
+        "label": "databases",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "databases = [\"drug200\"]\nk = 5\nprint(\"Quantidades de vizinhos próximos calculados: \", k)\nfor database in databases:\n    print('Database: ' + database)\n    point_list = getDataPoints('data/' + database + '.csv')\n    trainingPoints, testPoints = getTrainingAndTestsPoints(point_list)\n    xnn = Xnn(priority_queue=[])\n    xnn.buildKdtree(trainingPoints)\n    xnn.getStatisticsFromTestPoints(k, testPoints, getUniqueClasses(testPoints))",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "k",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "k = 5\nprint(\"Quantidades de vizinhos próximos calculados: \", k)\nfor database in databases:\n    print('Database: ' + database)\n    point_list = getDataPoints('data/' + database + '.csv')\n    trainingPoints, testPoints = getTrainingAndTestsPoints(point_list)\n    xnn = Xnn(priority_queue=[])\n    xnn.buildKdtree(trainingPoints)\n    xnn.getStatisticsFromTestPoints(k, testPoints, getUniqueClasses(testPoints))",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "getDataPoints",
+        "kind": 2,
+        "importPath": "read_files",
+        "description": "read_files",
+        "peekOfCode": "def getDataPoints(filename):\n    data = np.loadtxt(filename, delimiter=',', dtype=str)\n    listofpoints = []\n    for d in data:\n        listofpoints.append(tuple(d))\n    ans = []\n    for tupl in listofpoints:\n        temp = []\n        for x in tupl:\n            try:",
+        "detail": "read_files",
+        "documentation": {}
+    },
+    {
+        "label": "getDimensions",
+        "kind": 2,
+        "importPath": "read_files",
+        "description": "read_files",
+        "peekOfCode": "def getDimensions(data):\n    return len(data[0])\ndef getTrainingAndTestsPoints(data):\n    seventyPercent = int((70/100)*len(data))\n    random.shuffle(data)\n    trainingPoints = data[:seventyPercent]\n    testPoints = data[seventyPercent + 1:]\n    return trainingPoints, testPoints\ndef getUniqueClasses(data):\n    classes = []",
+        "detail": "read_files",
+        "documentation": {}
+    },
+    {
+        "label": "getTrainingAndTestsPoints",
+        "kind": 2,
+        "importPath": "read_files",
+        "description": "read_files",
+        "peekOfCode": "def getTrainingAndTestsPoints(data):\n    seventyPercent = int((70/100)*len(data))\n    random.shuffle(data)\n    trainingPoints = data[:seventyPercent]\n    testPoints = data[seventyPercent + 1:]\n    return trainingPoints, testPoints\ndef getUniqueClasses(data):\n    classes = []\n    dimension = getDimensions(data)\n    for p in data:",
+        "detail": "read_files",
+        "documentation": {}
+    },
+    {
+        "label": "getUniqueClasses",
+        "kind": 2,
+        "importPath": "read_files",
+        "description": "read_files",
+        "peekOfCode": "def getUniqueClasses(data):\n    classes = []\n    dimension = getDimensions(data)\n    for p in data:\n        if classes.count(p[dimension-1]) == 0:\n            classes.append(p[dimension-1])\n    return classes",
+        "detail": "read_files",
+        "documentation": {}
+    },
+    {
+        "label": "Xnn",
+        "kind": 6,
+        "importPath": "xnn",
+        "description": "xnn",
+        "peekOfCode": "class Xnn():\n    def __init__(self, priority_queue):\n        self.priority_queue = priority_queue\n        self.kdtree = None\n    def buildKdtree(self, point_list):\n        self.kdtree = Kdtree.buildKdtree(point_list)\n    def k_nearest(self, dimensions, k, point, current_node):\n        self.priority_queue = k_nearestAux(dimensions, k, point, current_node, self.priority_queue, depth=0)\n    def getClassificationFromPQ(self, dimensions):\n        temp = []",
+        "detail": "xnn",
+        "documentation": {}
+    },
+    {
+        "label": "euclideanDistance",
+        "kind": 2,
+        "importPath": "xnn",
+        "description": "xnn",
+        "peekOfCode": "def euclideanDistance(a, b):\n    return np.linalg.norm(np.asarray(a)-np.asarray(b))\ndef k_nearestAux(dimensions, k, point, current_node, priority_queue=[], depth=0):\n    axis = depth % (dimensions-1)\n    depth += 1\n    if current_node.left == None and current_node.right == None:\n        distance = euclideanDistance(point[:dimensions-1], current_node.value[:dimensions-1])\n        if len(priority_queue) < k:\n            heapq.heappush(priority_queue, (-distance,current_node.value))\n            priority_queue = sorted(priority_queue)",
+        "detail": "xnn",
+        "documentation": {}
+    },
+    {
+        "label": "k_nearestAux",
+        "kind": 2,
+        "importPath": "xnn",
+        "description": "xnn",
+        "peekOfCode": "def k_nearestAux(dimensions, k, point, current_node, priority_queue=[], depth=0):\n    axis = depth % (dimensions-1)\n    depth += 1\n    if current_node.left == None and current_node.right == None:\n        distance = euclideanDistance(point[:dimensions-1], current_node.value[:dimensions-1])\n        if len(priority_queue) < k:\n            heapq.heappush(priority_queue, (-distance,current_node.value))\n            priority_queue = sorted(priority_queue)\n        elif -distance < -priority_queue[0][0]:\n            heapq.heappushpop(priority_queue, (-distance, current_node.value))",
+        "detail": "xnn",
+        "documentation": {}
+    }
+]
