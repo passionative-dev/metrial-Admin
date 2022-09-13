@@ -396,7 +396,7 @@ const UploadFile = () => {
               const tmp = products.find(
                 (p) => row.Title.includes(p.title) //true
               );
-              if (!tmp) return true;
+              if (!tmp) return false;
               if (tmp) {
                 if (
                   selectedCountries.length > 0 &&

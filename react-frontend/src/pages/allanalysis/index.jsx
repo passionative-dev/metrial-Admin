@@ -81,7 +81,6 @@ function AllAnalysis() {
       res = await axios.get('/products');
       setProducts(res.data);
       res = await axios.get('/analysis');
-      console.log(res)
       setOperations(res.data);
     }
     loadData();
@@ -118,9 +117,15 @@ function AllAnalysis() {
     console.log(result);
     result = result.map((row) => {
       let op = operations.find((op) => op.output7 === row.title);
+      let rows;
       if (op) {
-        row = {
-          ...row,
+        console.log(op)
+
+        rows = {
+          category: categories.find((e) => e.id === row.category) == undefined ? "" : categories.find((e) => e.id === row.cat_3).title,
+          brand: brands.find((e) => e.id === row.brand) == undefined ? "" : brands.find((e) => e.id === row.brand).title,
+          country: countries.find((e) => e.id === row.country) == undefined ? "" : countries.find((e) => e.id === row.country).title,
+          title: row.title,
           Param1: op.output1,
           Param2: op.output2,
           Param3: op.output3,
@@ -129,7 +134,7 @@ function AllAnalysis() {
           Param6: op.output6,
         };
       }
-      return row;
+      return rows;
     });
 
     setTableData(result);
