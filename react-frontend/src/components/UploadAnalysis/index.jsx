@@ -157,7 +157,7 @@ const UploadAnalysis = () => {
         '',
       ),
     );
-    formdata.append('fileRows', fileRows)
+    formdata.append('fileRows', JSON.stringify(fileRows));
     axios
       .post('/analysis/upload', formdata)
       .then((res) => {

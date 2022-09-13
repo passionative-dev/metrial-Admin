@@ -199,7 +199,13 @@ router.post(
 );
 router.post(
   "/upload", (req, res) => {
-
+    console.log(req.body.fileRows)
+    const saveData = JSON.parse(req.body.fileRows);
+    // const op = JSON.parse(req.body.form);
+    db.UploadAnalysis.create({
+      directory: saveData[0].Drectory,
+      filename: saveData[0].Filename,
+    })
     return res.json({status: 3});
   })
 router
