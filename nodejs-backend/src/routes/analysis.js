@@ -67,10 +67,7 @@ router.post(
     const newpath = rootpath + "\\data\\UploadAnalysis\\";
     const ops = req.body.form;
     const arr = req.body.fileName.split(", ");
-    const fileName = [];
-    for(var i = 1;i<arr.length;i++){
-      fileName.push(arr[i]);
-    }
+    const fileName = req.body.fileName.split(", ");
     let resData = res;
     let options = {
       args: [rootpath, fileName, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
@@ -109,13 +106,7 @@ router.post(
     const newpath = rootpath + "\\data\\UploadAnalysis\\";
     const ops = req.body.form;
     const directory = req.body.directory;
-    const arr = req.body.fileName.split(", ");
-    const fileName = [];
-    for(var i = 1;i<arr.length;i++){
-      fileName.push(arr[i]);
-    }
-
-    console.log(fileName)
+    const fileName = req.body.fileName.split(", ");
     let options = {
       args: [rootpath, fileName, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
     };

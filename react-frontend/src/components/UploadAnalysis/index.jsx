@@ -101,8 +101,13 @@ const UploadAnalysis = () => {
     const tableData = [];
     const newDate = new Date()
     const date = newDate.getDate();
-    const names = fileNames + ", " + event.target.files[0].name;
-    setFileNames(names );
+    let names
+    if(fileNames !== ''){
+      names = fileNames + ", " + event.target.files[0].name;
+    }else{
+      names = fileNames + event.target.files[0].name;
+    }
+    setFileNames(names);
     tableData.push({Filename: names, Uploaded_date: date, Drectory: 'upload'})
     setFileRows(tableData);
     data.push(event.target.files[0])
