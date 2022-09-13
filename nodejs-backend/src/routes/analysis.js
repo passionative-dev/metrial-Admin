@@ -66,9 +66,14 @@ router.post(
     const rootpath = __dirname + "\\public\\supervised_machine_learning";
     const newpath = rootpath + "\\data\\UploadAnalysis\\";
     const ops = req.body.form;
+    const arr = req.body.fileName.split(", ");
+    const fileName = [];
+    for(var i = 1;i<arr.length;i++){
+      fileName.push(arr[i]);
+    }
     let resData = res;
     let options = {
-      args: [rootpath, newpath, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
+      args: [rootpath, fileName, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
     };
     console.log(ops, 'asdfasdfas')
     if(ops.csvformat !=2){
@@ -104,9 +109,15 @@ router.post(
     const newpath = rootpath + "\\data\\UploadAnalysis\\";
     const ops = req.body.form;
     const directory = req.body.directory;
-    const fileName = req.body.fileName;
+    const arr = req.body.fileName.split(", ");
+    const fileName = [];
+    for(var i = 1;i<arr.length;i++){
+      fileName.push(arr[i]);
+    }
+
+    console.log(fileName)
     let options = {
-      args: [rootpath, newpath, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
+      args: [rootpath, fileName, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
     };
     PythonShell.run(pythoPath + "main_analysis_results.py", options, async function (err, pyData) {
       if (err) {
@@ -115,11 +126,11 @@ router.post(
       } else {
         const json = JSON.parse(pyData);
         const saveData = json.results;
-        await db.Analysis.destroy({where: { filename: fileName }})
+        await db.Analysis.destroy({where: { filename: req.body.fileName }})
 
         for (const list of saveData) {
           db.Operation.create({
-            filename:fileName,
+            filename: req.body.fileName,
             // product_title: 'sample name',
             ...list,
             param1: ops.param1,
@@ -161,7 +172,7 @@ router.post(
         mode: "text",
         pythonOptions: ["-u"],
         scriptPath: rootpath,
-        args: [req.body.directory, newpath, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
+        args: [req.body.directory, file.name, ops.catId, ops.param1, ops.param2, ops.param3, ops.param4, ops.param5, ops.param6, ops.param7],
       };
       PythonShell.run("main.py", options, async function (err, result) {
         if (err) {
@@ -206,6 +217,7 @@ router.post(
       directory: saveData[0].Drectory,
       filename: saveData[0].Filename,
     })
+
     return res.json({status: 3});
   })
 router
