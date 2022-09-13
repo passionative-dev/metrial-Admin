@@ -45,10 +45,10 @@ const Analysis = () => {
       .post('/analysis/saveOption', form)
       .then((res) => {
         setForm(res.data);
-        // setMessageType('success');
-        // setMessage(res.data.message);
-        // setShowAlert(true);
-        // setModal(false);
+        setMessageType('success');
+        setMessage(res.data.message);
+        setShowAlert(true);
+        setModal(false);
       })
   };
 
@@ -348,7 +348,7 @@ const Analysis = () => {
                             onClick={() => {
                               console.log('ddddddddddddddddddddd')
                               axios
-                                .post('/analysis/chartData', {form: form, format: 0})
+                                .post('/analysis/chartData', {form: form, fileName: tableMeta.rowData[0], directory: tableMeta.rowData[1]})
                                 .then((res) => {
                                   let data = res.data.data;
                                   console.log(data, 'chat data------------------');
@@ -382,7 +382,7 @@ const Analysis = () => {
                             onClick={() => {
                               console.log('ddddddddddddddddddddd')
                               axios
-                                .post('/analysis/chartData', {form: form, format: 0})
+                                .post('/analysis/chartData', {form: form, fileName: tableMeta.rowData[0], directory: tableMeta.rowData[1]})
                                 .then((res) => {
                                   let data = res.data.data;
                                   console.log(data, 'chat data------------------');
