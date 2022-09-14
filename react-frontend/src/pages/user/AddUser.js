@@ -66,6 +66,7 @@ const AddUser = () => {
       phoneNumber: '',
       role: 'user',
     });
+    console.log()
     function handleChange(e) {
       setNewUser({
         ...newUser,

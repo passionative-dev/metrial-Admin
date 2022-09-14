@@ -80,9 +80,9 @@ const UsersForm = (props) => {
                 <RadioFormItem name={'role'} schema={usersFields} />
               </Grid>
 
-              <Grid item>
+              {/* <Grid item>
                 <SwitchFormItem name={'disabled'} schema={usersFields} />
-              </Grid>
+              </Grid> */}
 
               <Grid item>
                 <ImagesFormItem
