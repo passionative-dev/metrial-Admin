@@ -150,10 +150,11 @@ router.post(
       });
     }
     const file = req.files.file;
+    console.log(file.name.split('.')[1])
     const ops = JSON.parse(req.body.operation);
 
     console.log(file)
-    const filteredfile = `filtered-${moment().format("YYYYMMDD_hhmmss.[csv]")}`;
+    const filteredfile = `filtered-${moment().format(`YYYYMMDD_hhmmss.[${file.name.split('.')[1]}]`)}`;
     file.mv(`${newpath}${filteredfile}`, (err) => {
       if (err) {
         console.log(err);
@@ -186,16 +187,26 @@ router.post(
           }
         }
       });
-      let stream = fs
-        .createReadStream(`${newpath}${filteredfile}`)
-        .pipe(csv.parse({ headers: true }))
-        // pipe the parsed input into a csv formatter
-        .pipe(csv.format({ headers: true }))
-        // pipe the parsed input into a csv formatter
-        // Using the transform function from the formatting stream
-        console.log('finish');
-        
-        return res.json({status: 3});
+      if(file.name.split('.')[1] === 'csv'){
+        let stream = fs
+          .createReadStream(`${newpath}${filteredfile}`)
+          .pipe(csv.parse({ headers: true }))
+          // pipe the parsed input into a csv formatter
+          .pipe(csv.format({ headers: true }))
+          // pipe the parsed input into a csv formatter
+          // Using the transform function from the formatting stream
+          console.log('finish');
+          
+          return res.json({status: 3});
+      }else if(file.name.split('.')[1] === 'xlsx'){
+        let stream = fs
+          .createReadStream(`${newpath}${filteredfile}`)
+          // pipe the parsed input into a csv formatter
+          // Using the transform function from the formatting stream
+          console.log('finish');
+          
+          return res.json({status: 3});
+      }
     }); 
   })
 );

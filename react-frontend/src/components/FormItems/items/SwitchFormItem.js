@@ -15,42 +15,11 @@ const SwitchFormItem = (props) => {
 
   return (
     <FastField name={name}>
-      {({ form }) => (
-        <>
-          <FormGroup>
-            <FormLabel>{label}</FormLabel>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  color='default'
-                  onChange={(event) => {
-                    form.setFieldValue(name, event.target.checked);
-                    form.setFieldTouched(name);
-                  }}
-                  checked={!!form.values[name]}
-                  inputProps={{ 'aria-label': 'controlled' }}
-                />
-              }
-            />
-          </FormGroup>
-
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
-          </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
-        </>
-      )}
+      kk
     </FastField>
   );
 };
 
-SwitchFormItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  required: PropTypes.bool,
-  hint: PropTypes.string,
-  size: PropTypes.string,
-  errorMessage: PropTypes.string,
-  inputProps: PropTypes.object,
-};
+
 
 export default SwitchFormItem;
