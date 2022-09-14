@@ -1,0 +1,30 @@
+{
+	"filepath": {
+		"data_file": "D:/.csv",
+		"root_dir_path": "D:/python/",
+		"output_path": "D:/python/"
+	},
+	"tolerance_interval_params": {
+		"Input5": 0.9,
+		"Input8": 180,
+		"Input7": 0
+	},
+	"baseline_params_params": {
+		"Input1": 0,
+		"Input2": 1,
+		"Input3": 0,
+		"Input4": 100
+	},
+	"logging": {
+		"info_log_filepath": "D:/info.log",
+		"error_log_filepath": "D:/error.log"
+	},
+	"csv-file-params": {
+		"data_params": [
+			"Product1",
+			"Product3",
+			"Product2",
+			"Product4"
+		]
+	}
+}

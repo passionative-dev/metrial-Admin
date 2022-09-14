@@ -118,6 +118,10 @@ const structure = [
     label: 'Python Error Logs',
     link: '/app/Error',
   },
+  {
+    label: 'config',
+    link: '/app/config',
+  },
 ];
 
 export default structure;

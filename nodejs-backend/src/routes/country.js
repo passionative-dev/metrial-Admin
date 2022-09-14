@@ -6,6 +6,7 @@ import path from "path";
 
 const __dirname = path.resolve(path.dirname(""));
 const logPath = path.join(__dirname, "/public/supervised_machine_learning/error1.log"); 
+const configFilePath = path.join(__dirname, "/public/supervised_machine_learning/config1.json");
 
 const router = express.Router();
 
@@ -23,6 +24,34 @@ router.get(
       console.log(file);
       res.json(file);
     })
+  })
+);
+
+router.get(
+  "/config",
+  wrapAsync(async (req, res) => {
+    fs.readFile(configFilePath, "utf8", (err, jsonStr) => {
+      if (err) {
+        console.log(err);
+        return res.status(404).json({});
+      }
+      res.json(JSON.parse(jsonStr));
+    });
+  })
+);
+
+router.post(
+  "/configSave",
+  wrapAsync(async (req, res) => {
+    console.log(req.body.config)
+    const config = req.body.config;
+    fs.writeFile(configFilePath, config, err => {
+      if (err) {
+          console.log('Error writing file', err)
+      } else {
+      }
+    })
+    res.json({status: 2});
   })
 );
 

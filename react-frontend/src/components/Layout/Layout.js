@@ -36,7 +36,8 @@ import ProductBrand from '../../pages/ecommerce/Brand';
 import Product from '../../pages/ecommerce/Products';
 import ProductsGrid from '../../pages/ecommerce/ProductsGrid';
 import CreateProduct from '../../pages/ecommerce/CreateProduct';
-import Error from '../../pages/error/Error'
+import Error from '../../pages/error/Error';
+import Config from '../../pages/config/config';
 import BreadCrumbs from '../../components/BreadCrumbs';
 
 // context
@@ -87,6 +88,7 @@ function Layout(props) {
           <Route path='/app/alloperations' component={AllOperation} />
           <Route path='/app/allanalysis' component={AllAnalysis} />
           <Route path='/app/error' component={Error} />
+          <Route path='/app/config' component={Config} />
 
           <Route path='/app/uploadfile' component={UploadFile} />
           <Route path='/app/uploadanalysis' component={UploadAnalysis} />
