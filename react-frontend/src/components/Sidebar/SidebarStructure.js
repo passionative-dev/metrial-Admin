@@ -116,7 +116,7 @@ const structure = [
   { id: 7, type: 'divider' },
   {
     label: 'Python Error Logs',
-    link: '/app/ecommerce/product',
+    link: '/app/Error',
   },
 ];
 

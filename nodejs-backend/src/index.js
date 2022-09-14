@@ -106,6 +106,7 @@ app.use("/api/products", passport.authenticate("jwt", { session: false }), produ
 app.use("/api/analysis", passport.authenticate("jwt", { session: false }), analysis);
 app.use("/api/analytics", passport.authenticate("jwt", { session: false }), analytics);
 app.use("/api/users", passport.authenticate("jwt", { session: false }), userRoutes);
+app.use("/api/error", passport.authenticate("jwt", { session: false }), countryRoutes);
 
 app.use(express.static("public"));
 
@@ -115,13 +116,6 @@ db.sequelize.sync().then(function () {
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
   });
-  // cron.schedule('0 0 */1 * * *', () => {
-  //   exec('yarn reset', err => {
-  //     if (err) {
-  //       console.error(err);
-  //     }
-  //   });
-  // });
 });
 
 export default app;
